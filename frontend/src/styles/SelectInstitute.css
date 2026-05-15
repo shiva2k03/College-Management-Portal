@@ -1,0 +1,82 @@
+.select-institute {
+  background-color: #111;
+  color: white;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-family);
+}
+
+.institute-selection h1 {
+  font-size: 2.5rem;
+  margin-top: 10%;
+  font-family: var(--font-family);
+}
+
+.institute-selection p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-family);
+}
+
+.institute-card {
+  background-color: #333;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 300px;
+  margin: auto;
+  text-align: left;
+  margin-bottom: 10%;
+  font-family: var(--font-family);
+}
+
+.institute-card label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  font-family: var(--font-family);
+  color: #ccc;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #333;
+  font-family: var(--font-family);
+  border: solid 2px #444
+}
+
+.next-button1 {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: var(--font-family);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.next-button1:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+  font-family: var(--font-family);
+}
+
+.next-button1:active {
+  transform: scale(1);
+  font-family: var(--font-family);
+}

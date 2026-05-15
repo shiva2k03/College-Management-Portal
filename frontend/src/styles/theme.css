@@ -1,0 +1,61 @@
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.08);
+}
+
+html.dark .theme-toggle {
+  background: #374151;
+  border-color: #4b5563;
+}
+
+/* Public / auth pages (CSS modules) */
+html.dark .homepage,
+html.dark .user-details,
+html.dark .select-role,
+html.dark .select-institute,
+html.dark .admin-sign-up {
+  background-color: #111 !important;
+  color: #fff !important;
+}
+
+html.dark .details-card,
+html.dark .institute-card,
+html.dark .role-card {
+  background-color: #2a2a2a !important;
+  color: #fff !important;
+}
+
+html.dark .details-card label,
+html.dark .institute-card label {
+  color: #ccc !important;
+}
+
+html.dark .input-field,
+html.dark .input-field1,
+html.dark .dropdown {
+  background-color: #3a3a3a !important;
+  color: #fff !important;
+  border-color: #555 !important;
+}
+
+html.dark .navbar {
+  background-color: #1a1a1a !important;
+}
+
+html.dark .nav-popout {
+  background-color: rgba(20, 20, 20, 0.95) !important;
+}

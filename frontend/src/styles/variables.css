@@ -1,0 +1,9 @@
+:root {
+  --background-color: #111;
+  --navbar-color: #222;
+  --primary-color: #4caf50;
+  --secondary-color: #ffc107;
+  --text-color: #ffffff;
+  --hover-color: #45a049;
+  --font-family: "Comic Sans MS", cursive, sans-serif;
+}
