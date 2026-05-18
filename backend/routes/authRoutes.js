@@ -21,7 +21,7 @@ function roleConfig(role) {
     return { table: "teachers", idColumn: "teacherId" };
   }
   if (role === "Admin") {
-    return { table: "admins", idColumn: "adminId" };
+    return { table: "admins", idColumn: "adminID" };
   }
   return null;
 }
@@ -35,11 +35,13 @@ async function checkPassword(plainPassword, storedHash) {
 }
 
 function userPayload(user, role) {
+  const displayName =
+    user.name || user.adminName || user.adminID || user.studentId || user.teacherId || "";
   return {
     success: true,
     role,
     instituteName: user.instituteName || "",
-    name: user.name || "",
+    name: displayName,
     email: user.email || "",
   };
 }
