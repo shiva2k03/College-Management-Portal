@@ -3,8 +3,8 @@ const db = require("../models/adminModel");
 
 module.exports = {
   register: (req, res) => {
-    const { adminID, instituteName, adminName, email, password } = req.body;
-    if (!adminID || !instituteName || !adminName || !email || !password) {
+    const { instituteName, adminName, email, password } = req.body;
+    if (!instituteName || !adminName || !email || !password) {
       return res.status(400).json({ success: false, message: "All fields are required" });
     }
 
@@ -27,8 +27,8 @@ module.exports = {
           return res.status(500).json({ success: false, message: "Error hashing password" });
         }
 
-        const sql = "INSERT INTO admins (adminID, instituteName, adminName, email, password) VALUES (?, ?, ?, ?, ?)";
-        db.query(sql, [adminID, instituteName, adminName, email, hashedPassword], (err, result) => {
+        const sql = "INSERT INTO admins (instituteName, adminName, email, password) VALUES (?, ?, ?, ?)";
+        db.query(sql, [instituteName, adminName, email, hashedPassword], (err, result) => {
           if (err) {
             console.error("Error registering admin:", err);
             return res.status(500).json({ success: false, message: "Database error" });

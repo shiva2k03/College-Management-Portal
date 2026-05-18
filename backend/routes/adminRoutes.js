@@ -5,8 +5,12 @@ const bcrypt = require('bcryptjs');
 const mysql = require('mysql2/promise');
 
 router.post("/register", async (req, res) => {
-  const { adminID, instituteName, adminName, email, password } = req.body;
-  
+  const { instituteName, adminName, email, password } = req.body;
+
+  if (!instituteName || !adminName || !email || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
   try {
     const connection = await mysql.createConnection({
       host: process.env.DB_HOST,
@@ -30,10 +34,10 @@ router.post("/register", async (req, res) => {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insert admin
+    // Insert admin (adminID is AUTO_INCREMENT)
     await connection.execute(
-      "INSERT INTO admins (adminID, instituteName, adminName, email, password) VALUES (?, ?, ?, ?, ?)",
-      [adminID, instituteName, adminName, email, hashedPassword]
+      "INSERT INTO admins (instituteName, adminName, email, password) VALUES (?, ?, ?, ?)",
+      [instituteName, adminName, email, hashedPassword]
     );
 
     await connection.end();

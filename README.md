@@ -78,8 +78,7 @@ edventures/
 │   ├── routes/            # /api/admin, /api/auth
 │   ├── sql/               # Database schema & sample queries
 │   │   ├── schema.sql
-│   │   ├── sample_queries.sql
-│   │   └── add_institute_column.sql
+│   │   └── sample_queries.sql
 │   ├── server.js          # Express entry point
 │   ├── package.json
 │   └── .env               # DB credentials (not committed)
@@ -143,17 +142,48 @@ PORT=5000
 
 ### 4. Sample queries
 
-See [`backend/sql/sample_queries.sql`](backend/sql/sample_queries.sql) for common **SELECT**, **INSERT**, and **UPDATE** examples (users, institutes, attendance, exams).
+See [`backend/sql/sample_queries.sql`](backend/sql/sample_queries.sql) for common **SELECT**, **INSERT**, and **UPDATE** examples on `admins`, `students`, and `teachers`.
+
+### Database schema
+
+Run this in **phpMyAdmin** (SQL tab) or save as `backend/sql/schema.sql`:
+
+```sql
+CREATE DATABASE edventures;
+USE edventures;
+
+CREATE TABLE admins (
+    adminID INT AUTO_INCREMENT PRIMARY KEY,
+    instituteName VARCHAR(255) NOT NULL,
+    adminName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    studentId VARCHAR(50) UNIQUE NOT NULL,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    password VARCHAR(255)
+);
+
+CREATE TABLE teachers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    teacherId VARCHAR(50) UNIQUE NOT NULL,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    password VARCHAR(255)
+);
+```
 
 ### Core tables
 
-| Table | Description |
-|-------|-------------|
-| `admins` | Institute administrators (`adminID`, `instituteName`, `adminName`, `email`, `password`) |
-| `teachers` | Teacher accounts (`teacherId`, `name`, `email`, `password`, `instituteName`) |
-| `students` | Student accounts (`studentId`, `name`, `email`, `password`, `instituteName`) |
-| `parents` | Parent accounts (optional, for parent portal) |
-| `subjects`, `classes`, `attendance`, `exams`, `results`, `announcements`, `events` | Academic data (schema included for extension) |
+| Table | Columns |
+|-------|---------|
+| `admins` | `adminID` (PK, auto-increment), `instituteName`, `adminName`, `email`, `password` |
+| `students` | `id` (PK, auto-increment), `studentId`, `name`, `email`, `password` |
+| `teachers` | `id` (PK, auto-increment), `teacherId`, `name`, `email`, `password` |
 
 ---
 
@@ -226,15 +256,7 @@ npm run preview
 
 Never commit `.env` files. Use `backend/.env.example` as a template.
 
-### Demo accounts (after running `schema.sql`)
-
-| Role | ID | Password |
-|------|-----|----------|
-| Admin | `ADM001` | `password123` |
-| Teacher | `TCH001` | `password123` |
-| Student | `STU001` | `password123` |
-
-Institute: **Demo Institute**
+**Login IDs:** Use `studentId` / `teacherId` for students and teachers. For admins registered via the app, use the numeric `adminID` (e.g. `1`) when logging in with role **Admin**.
 
 ---
 

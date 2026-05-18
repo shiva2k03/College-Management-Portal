@@ -99,10 +99,6 @@ router.post("/detail/register", async (req, res) => {
     return res.status(400).json({ message: "Name and email are required." });
   }
 
-  if (!instituteName) {
-    return res.status(400).json({ message: "Institute is required." });
-  }
-
   if (password.length < 6) {
     return res.status(400).json({ message: "Password must be at least 6 characters." });
   }
